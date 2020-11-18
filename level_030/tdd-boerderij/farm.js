@@ -1,8 +1,8 @@
-const get_yield_per_plant = plant => plant.yield;
+const getYieldPerPlant = plant => plant.yield;
 
-const get_total_yield_of_crops = crops => crops.num_plants * crops.crop.yield;
+const getTotalYieldOfCrops = crops => crops.num_plants * crops.crop.yield;
 
-const get_total_yield = cropsArray => {
+const getTotalYield = cropsArray => {
     let total = 0
     cropsArray.forEach(item => {
         total = total + item.crop.yield * item.num_plants;
@@ -10,8 +10,11 @@ const get_total_yield = cropsArray => {
     return total
 };
 
+const getCostsPerCrop = crops => crops.crop.cost * crops.num_plants;
+
 module.exports = {
-    get_yield_per_plant,
-    get_total_yield_of_crops,
-    get_total_yield,
+    getYieldPerPlant,
+    getTotalYieldOfCrops,
+    getTotalYield,
+    getCostsPerCrop,
 };
