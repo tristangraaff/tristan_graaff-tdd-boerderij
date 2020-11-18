@@ -12,9 +12,12 @@ const getTotalYield = cropsArray => {
 
 const getCostsPerCrop = crops => crops.crop.cost * crops.num_plants;
 
+const getRevenuePerCrop = crops => crops.crop.sales_price * crops.num_plants;
+
 module.exports = {
     getYieldPerPlant,
     getTotalYieldOfCrops,
     getTotalYield,
     getCostsPerCrop,
+    getRevenuePerCrop,
 };
