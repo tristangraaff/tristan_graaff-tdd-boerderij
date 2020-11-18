@@ -16,6 +16,14 @@ const getRevenuePerCrop = crops => crops.crop.sales_price * crops.crop.yield * c
 
 const getProfitPerCrop = crops => getRevenuePerCrop(crops) - crops.crop.cost * crops.num_plants;
 
+const getTotalProfit = cropsArray => {
+    let total = 0;
+    cropsArray.forEach(item => {
+        total = total +  getProfitPerCrop(item);
+    });
+    return total;
+};
+
 module.exports = {
     getYieldPerPlant,
     getTotalYieldOfCrops,
@@ -23,4 +31,5 @@ module.exports = {
     getCostsPerCrop,
     getRevenuePerCrop,
     getProfitPerCrop,
+    getTotalProfit,
 };
