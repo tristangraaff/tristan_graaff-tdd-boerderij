@@ -1,6 +1,6 @@
 const {
     getYieldPerPlantWithoutIfStatements,
-    getTotalYieldOfCrops,
+    getYieldOfCrop,
     getTotalYield,
     getCostsPerCrop,
     getRevenuePerCrop,
@@ -37,17 +37,35 @@ const {
     });
   });
   
-  describe("getTotalYieldOfCrops", () => {
-    test("Get yield for crop, simple", () => {
+  describe("getYieldOfCrop", () => {
+    test("Get yield for crop considering environmental factors", () => {
       const corn = {
         name: "corn",
         yield: 3,
+        factors: {
+          sun: {
+            low: -50,
+            medium: 0,
+            high: 50,
+          },
+          wind: {
+              low: 0,
+              medium: -30,
+              high: -60,
+          }
+        },
       };
       const input = {
         crop: corn,
         num_plants: 10,
       };
-      expect(getTotalYieldOfCrops(input)).toBe(30);
+
+      const environmentFactors = {
+        sun: "medium",
+        wind: "medium",
+      };
+
+      expect(getYieldOfCrop(input, environmentFactors)).toBe(21);
     });
   });
   
@@ -120,15 +138,32 @@ const {
       yield: 3,
       cost: 1,
       sales_price: 2.5,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+            low: 0,
+            medium: -30,
+            high: -60,
+        }
+      },
     };
 
     const input = {
       crop: corn,
       num_plants: 5,
     };
+
+    const environmentFactors = {
+      sun: "high",
+      wind: "low",
+    };
   
-    test("Get proft per crop without considering environmental factors", () => {
-      expect(getProfitPerCrop(input)).toBe(32.5);
+    test("Get proft per crop considering environmental factors", () => {
+      expect(getProfitPerCrop(input, environmentFactors)).toBe(51.25);
     });
   });
 
