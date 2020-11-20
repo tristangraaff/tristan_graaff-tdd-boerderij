@@ -173,19 +173,50 @@ const {
       yield: 2,
       cost: 2,
       sales_price: 3,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+            low: 0,
+            medium: -30,
+            high: -60,
+        }
+      },
     };
     const pumpkin = {
       name: "pumpkin",
       yield: 5,
       cost: 3,
       sales_price: 4,
+      factors: {
+        sun: {
+          low: -30,
+          medium: 0,
+          high: 30,
+        },
+        wind: {
+            low: 0,
+            medium: -10,
+            high: -15,
+        }
+      },
     };
+
+    const environmentFactors = {
+      sun: "high",
+      wind: "high",
+    };
+
     const crops = [
       { crop: corn, num_plants: 2 },
       { crop: pumpkin, num_plants: 3 },
     ];
   
-    test("Get total profit without considering environmental factors", () => {
-      expect(getTotalProfit(crops)).toBe(59);
+    test("Get total profit considering environmental factors", () => {
+      expect(getTotalProfit(crops, environmentFactors)).toBe(66.8);
     });
   });
+

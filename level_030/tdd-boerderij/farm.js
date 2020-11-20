@@ -77,10 +77,10 @@ const getProfitPerCrop = (crops, environment) => {
     }; 
 };
 
-const getTotalProfit = cropsArray => {
+const getTotalProfit = (cropsArray, environment) => {
     let total = 0;
     cropsArray.forEach(item => {
-        total = total +  getProfitPerCrop(item);
+        total = total +  getProfitPerCrop(item, environment);
     });
     return total;
 };
