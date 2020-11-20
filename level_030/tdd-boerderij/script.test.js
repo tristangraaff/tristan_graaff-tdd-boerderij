@@ -1,5 +1,5 @@
 const {
-    getYieldPerPlant,
+    getYieldPerPlantWithoutIfStatements,
     getTotalYieldOfCrops,
     getTotalYield,
     getCostsPerCrop,
@@ -9,7 +9,7 @@ const {
     
   } = require("./farm");
   
-  describe("getYieldPerPlant", () => {
+  describe("getYieldPerPlantWithoutIfStatements", () => {
     const corn = {
       name: "corn",
       yield: 30,
@@ -33,7 +33,7 @@ const {
     };
   
     test("Get yield for plant considering the environmental factors", () => {
-      expect(getYieldPerPlant(corn, environmentFactors)).toBe(15);
+      expect(getYieldPerPlantWithoutIfStatements(corn, environmentFactors)).toBe(0);
     });
   });
   

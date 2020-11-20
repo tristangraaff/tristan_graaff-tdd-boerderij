@@ -1,63 +1,41 @@
-const corn = {
-    name: "corn",
-    yield: 30,
-    factors: {
-      sun: {
-        low: -50,
-        medium: 0,
-        high: 50,
-      },
-      wind: {
-          low: 0,
-          medium: -30,
-          high: -60,
-      }
-    },
-  };
-  
-  const environmentFactors = {
-    sun: "low",
-    wind: "high",
-  };
+// const getYieldPerPlant = (plant, environment) => {
+//     const sun = plant.factors.sun;
+//     const wind = plant.factors.wind;
+//     const calculateYield = (sun, wind) => plant.yield / 100 * (100 + sun +  wind);
 
-const getYieldPerPlantNoIf = (plant, environment) => {
+//     if (environment.sun === "low" && environment.wind === "low") {
+//         return calculateYield(sun.low, wind.low);
+//     } else if  (environment.sun === "low" && environment.wind === "medium") {
+//         return calculateYield(sun.low, wind.medium);
+//     } else if  (environment.sun === "low" && environment.wind === "high") {
+//         return calculateYield(sun.low, wind.high);
+//     } else if  (environment.sun === "medium" && environment.wind === "low") {
+//         return calculateYield(sun.medium, wind.low);
+//     } else if  (environment.sun === "medium" && environment.wind === "medium") {
+//         return calculateYield(sun.medium, wind.medium);
+//     } else if  (environment.sun === "medium" && environment.wind === "high") {
+//         return calculateYield(sun.medium, wind.high);
+//     } else if  (environment.sun === "high" && environment.wind === "low") {
+//         return calculateYield(sun.high, wind.low);
+//     } else if  (environment.sun === "high" && environment.wind === "medium") {
+//         return calculateYield(sun.high, wind.medium);
+//     } else if  (environment.sun === "high" && environment.wind === "high") {
+//         return calculateYield(sun.high, wind.high);
+//     };
+// };
+
+const getYieldPerPlantWithoutIfStatements = (plant, environment) => {
     const sun = plant.factors.sun[environment.sun];
     const wind = plant.factors.wind[environment.wind];
-    return plant.yield / 100 * (100 + sun +  wind);
+    const calcYield = () => plant.yield / 100 * (100 + sun +  wind);
+    if (calcYield() < 0) {
+        return 0
+    } else {
+        return plant.yield / 100 * (100 + sun +  wind);
+    };   
 };
 
-console.log(getYieldPerPlantNoIf(corn, environmentFactors));
-
-const getYieldPerPlant = (plant, environment) => {
-    const sun = plant.factors.sun;
-    const wind = plant.factors.wind;
-    const calculateYield = (sun, wind) => plant.yield / 100 * (100 + sun +  wind);
-
-    // ik wil een functie schrijven waarin wordt gekeken of de string in environmentfactors.sun dezelfde letters bevat als een van de properties
-    // in het object corn.
-
-    if (environment.sun === "low" && environment.wind === "low") {
-        return calculateYield(sun.low, wind.low);
-    } else if  (environment.sun === "low" && environment.wind === "medium") {
-        return calculateYield(sun.low, wind.medium);
-    } else if  (environment.sun === "low" && environment.wind === "high") {
-        return calculateYield(sun.low, wind.high);
-    } else if  (environment.sun === "medium" && environment.wind === "low") {
-        return calculateYield(sun.medium, wind.low);
-    } else if  (environment.sun === "medium" && environment.wind === "medium") {
-        return calculateYield(sun.medium, wind.medium);
-    } else if  (environment.sun === "medium" && environment.wind === "high") {
-        return calculateYield(sun.medium, wind.high);
-    } else if  (environment.sun === "high" && environment.wind === "low") {
-        return calculateYield(sun.high, wind.low);
-    } else if  (environment.sun === "high" && environment.wind === "medium") {
-        return calculateYield(sun.high, wind.medium);
-    } else if  (environment.sun === "high" && environment.wind === "high") {
-        return calculateYield(sun.high, wind.high);
-    };
-};
-
-console.log(getYieldPerPlant(corn, environmentFactors));
+console.log(getYieldPerPlantWithoutIfStatements(corn, environmentFactors));
 
 const getTotalYieldOfCrops = crops => crops.num_plants * crops.crop.yield;
 
@@ -84,7 +62,7 @@ const getTotalProfit = cropsArray => {
 };
 
 module.exports = {
-    getYieldPerPlant,
+    getYieldPerPlantWithoutIfStatements,
     getTotalYieldOfCrops,
     getTotalYield,
     getCostsPerCrop,
