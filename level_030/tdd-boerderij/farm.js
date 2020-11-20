@@ -35,10 +35,6 @@ const getYieldPerPlantWithoutIfStatements = (plant, environment) => {
     };   
 };
 
-//console.log(getYieldPerPlantWithoutIfStatements(corn, environmentFactors));
-
-//const getYieldOfCrop = crops => crops.num_plants * crops.crop.yield;
-
 const getYieldOfCrop = (crops, environment) => {
     const sun = crops.crop.factors.sun[environment.sun];
     const wind = crops.crop.factors.wind[environment.wind];
@@ -61,8 +57,6 @@ const getTotalYield = cropsArray => {
 const getCostsPerCrop = crops => crops.crop.cost * crops.num_plants;
 
 const getRevenuePerCrop = crops => crops.crop.sales_price * crops.crop.yield * crops.num_plants;
-
-//const getProfitPerCrop = crops => {getRevenuePerCrop(crops) - crops.crop.cost * crops.num_plants};
 
 const getProfitPerCrop = (crops, environment) => {
     const sun = crops.crop.factors.sun[environment.sun];
